@@ -63,7 +63,7 @@ public:
     Database(const char* apFilename,
              const int   aFlags         = SQLITE_OPEN_READONLY,
              const int   aBusyTimeoutMs = 0,
-             const char* apVfs          = NULL);
+             const char* apVfs          = nullptr);
 
     /**
      * @brief Open the provided database UTF-8 filename.
