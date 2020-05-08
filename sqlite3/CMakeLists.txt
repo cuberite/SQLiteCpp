@@ -11,9 +11,9 @@ add_library(sqlite3
  sqlite3.h
 )
 
-target_include_directories(sqlite3
-  PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-  PUBLIC $<INSTALL_INTERFACE:include/>)
+target_include_directories(sqlite3 PUBLIC
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+  $<INSTALL_INTERFACE:include/>)
 
 if (SQLITE_ENABLE_COLUMN_METADATA)
     # Enable the use of SQLite column metadata method
