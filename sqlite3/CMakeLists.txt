@@ -11,6 +11,13 @@ add_library(sqlite3
  sqlite3.h
 )
 
+# Link target with pthread and dl for Unix
+if (UNIX)
+    set(THREADS_PREFER_PTHREAD_FLAG ON)
+    find_package(Threads REQUIRED)
+    target_link_libraries(sqlite3 PUBLIC Threads::Threads ${CMAKE_DL_LIBS})
+endif (UNIX)
+
 target_include_directories(sqlite3 PUBLIC
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
   $<INSTALL_INTERFACE:include/>)

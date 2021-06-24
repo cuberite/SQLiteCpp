@@ -279,13 +279,6 @@ else (SQLITECPP_INTERNAL_SQLITE)
     endif()
 endif (SQLITECPP_INTERNAL_SQLITE)
 
-# Link target with pthread and dl for Unix
-if (UNIX)
-    set(THREADS_PREFER_PTHREAD_FLAG ON)
-    find_package(Threads REQUIRED)
-    target_link_libraries(SQLiteCpp PUBLIC Threads::Threads ${CMAKE_DL_LIBS})
-endif (UNIX)
-
 # Set includes for target and transitive downstream targets
 
 target_include_directories(SQLiteCpp
