@@ -348,13 +348,6 @@ if (SQLITECPP_DISABLE_EXPANDED_SQL)
     target_compile_definitions(SQLiteCpp PUBLIC SQLITECPP_DISABLE_EXPANDED_SQL)
 endif (SQLITECPP_DISABLE_EXPANDED_SQL)
 
-# Link target with pthread and dl for Unix
-if (UNIX)
-    set(THREADS_PREFER_PTHREAD_FLAG ON)
-    find_package(Threads REQUIRED)
-    target_link_libraries(SQLiteCpp PUBLIC Threads::Threads ${CMAKE_DL_LIBS})
-endif (UNIX)
-
 # Set includes for target and transitive downstream targets
 
 target_include_directories(SQLiteCpp

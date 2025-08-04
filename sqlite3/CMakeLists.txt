@@ -24,6 +24,18 @@ target_include_directories(sqlite3
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
     $<INSTALL_INTERFACE:include/>)
 
+# Link target with pthread and dl for Unix
+if (UNIX)
+    set(THREADS_PREFER_PTHREAD_FLAG ON)
+    find_package(Threads REQUIRED)
+    target_link_libraries(sqlite3 PUBLIC Threads::Threads ${CMAKE_DL_LIBS})
+endif (UNIX)
+
+target_include_directories(sqlite3 PUBLIC
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+  $<INSTALL_INTERFACE:include/>)
+
+
 if (SQLITE_ENABLE_COLUMN_METADATA)
     # Enable the use of SQLite column metadata method
     # Require that the sqlite3 library is also compiled with this flag:
